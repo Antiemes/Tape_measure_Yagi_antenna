@@ -1,0 +1,19 @@
+p=3 mm
+q=18 mm
+r^2 = (r-p)^2 + (q/2)^2
+r^2 = r^2 + p^2 - 2rp + q^2/4
+2rp = p^2 + q^2/4
+r = (p^2 + q^2/4)/2p
+
+$fn=360;
+
+#translate([0, 0, 53]) rotate([0, 90, 0]) cylinder(h=50, r=40, center=true);
+
+difference()
+{
+  cube([40, 20, 30], center=true);
+  rotate([90, 0, 0]) cylinder(h=30, d=20, center=true);
+  translate([10, 0, 5]) cylinder(h=15, d=3, center=false);
+  translate([-10, 0, 5]) cylinder(h=15, d=3, center=false);
+  translate([0, 0, -18]) cylinder(h=10, d=3, center=false);
+}

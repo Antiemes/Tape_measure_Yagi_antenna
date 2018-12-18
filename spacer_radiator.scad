@@ -1,4 +1,4 @@
-$fn=360;
+$fn=30;
 
 tape_width=17.3;
 tape_height=3.5;
@@ -28,12 +28,26 @@ module cutout()
   }
 }
 
+module fillet()
+{
+  fillet_r=4;
+  translate([-fillet_r, 0, 0])
+    difference()
+    {
+      translate([fillet_r/2, 0, fillet_r/2]) cube([fillet_r, 20, fillet_r], center=true);
+      rotate([90, 0, 0]) cylinder(r=fillet_r, h=20+1, center=true);
+    }
+}
+
 difference()
 {
   union()
   {
     cube([40, 20, base_height], center=true);
     translate([0, 0, base_height*5/16]) cube([90, 20, base_height*3/8], center=true);
+    
+    translate([-20, 0, 0.5]) fillet();
+    translate([20, 0, 0.5]) mirror([1, 0, 0]) fillet();
   }
   rotate([90, 0, 0]) cylinder(h=30, d=pipe_diameter, center=true);
   translate([11, 0, 5]) cylinder(h=15, d=2, center=false);

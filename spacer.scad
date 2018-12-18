@@ -1,11 +1,12 @@
 $fn=360;
 
-tape_width=18;
+tape_width=17.3;
 tape_height=3.5;
+pipe_diameter=20.2;
 
 cutout_depth=1;
 
-base_height=30;
+base_height=35;
 
 cut_r = (pow(tape_height,2) + pow(tape_width,2)/4)/(2*tape_height);
 
@@ -30,10 +31,14 @@ module cutout()
 difference()
 {
   cube([40, 20, base_height], center=true);
-  rotate([90, 0, 0]) cylinder(h=30, d=20, center=true);
-  translate([10, 0, 5]) cylinder(h=15, d=3, center=false);
-  translate([-10, 0, 5]) cylinder(h=15, d=3, center=false);
-  translate([0, 0, -18]) cylinder(h=10, d=3, center=false);
+  rotate([90, 0, 0]) cylinder(h=30, d=pipe_diameter, center=true);
+  translate([11, 0, 5]) cylinder(h=15, d=2, center=false);
+  translate([-11, 0, 5]) cylinder(h=15, d=2, center=false);
+  translate([0, 0, -18]) cylinder(h=10, d=2, center=false);
   translate([0, 0, base_height/2-(tape_height+cutout_depth)]) cutout();
+  translate([11, 0, 0]) cube([20, 22, 1], center=true);
+  translate([40/2-(40-pipe_diameter)/4, 0, -(base_height+1)/4]) cylinder(d=4, h=(base_height+1)/2, center=true);
+  translate([40/2-(40-pipe_diameter)/4, 0, -base_height/2]) cylinder(d=8, h=3);
+  translate([40/2-(40-pipe_diameter)/4, 0, 0]) cylinder(d=3.5, h=12);
 }
 

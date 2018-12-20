@@ -1,4 +1,4 @@
-$fn=30;
+$fn=360;
 
 tape_width=17.3;
 tape_height=3.5;
